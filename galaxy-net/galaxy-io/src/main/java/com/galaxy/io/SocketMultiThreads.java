@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author syh
  * @since 2021/8/18 16:56
  */
-public class SocketMultiplexingThreads {
+public class SocketMultiThreads {
     int port = 8080;
     private Selector selector1 = null;
     private Selector selector2 = null;
@@ -41,7 +41,7 @@ public class SocketMultiplexingThreads {
     }
 
     public static void main(String[] args) {
-        SocketMultiplexingThreads socketMultiplexingThreads = new SocketMultiplexingThreads();
+        SocketMultiThreads socketMultiplexingThreads = new SocketMultiThreads();
         socketMultiplexingThreads.initServer();
 
         NIOThread boss = new NIOThread(socketMultiplexingThreads.selector1, 2);
@@ -91,7 +91,7 @@ class NIOThread extends Thread {
                             acceptHandler(key);
                         }
                         if (key.isReadable()){
-                            readHandler(key);
+                            SocketSingleThread.readHandler(key);
                         }
                     }
                 }
@@ -105,32 +105,6 @@ class NIOThread extends Thread {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    private void readHandler(SelectionKey key) {
-        SocketChannel client = (SocketChannel) key.channel();
-        ByteBuffer buffer = (ByteBuffer) key.attachment();
-        buffer.clear();
-        int read = 0;
-        try {
-            while (true){
-                read = client.read(buffer);
-                if (read > 0){
-                    buffer.flip();
-                    while (buffer.hasRemaining()){
-                        client.write(buffer);
-                    }
-                    buffer.clear();
-                }else if (read == 0){
-                    break;
-                }else {
-                    client.close();
-                }
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-
     }
 
     private void acceptHandler(SelectionKey key) {

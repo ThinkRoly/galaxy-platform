@@ -13,5 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>galaxy-io</module>
+        <module>galaxy-netty</module>
     </modules>
 </project>
