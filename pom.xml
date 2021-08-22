@@ -9,6 +9,8 @@
     <version>1.0</version>
     <modules>
         <module>galaxy-net</module>
+        <module>galaxy-data</module>
+        <module>galaxy-design-pattern</module>
     </modules>
 
     <packaging>pom</packaging>
