@@ -20,7 +20,7 @@ package com.galaxy.desig;
  * @since 2021/9/11 15:18
  */
 public class PrototypeTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CloneNotSupportedException {
         Prototype prototype = new Prototype();
         prototype.setName("Jack");
         Prototype clone = (Prototype)prototype.clone();
@@ -32,22 +32,13 @@ public class PrototypeTest {
 class Prototype implements Cloneable{
     private String name;
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     @Override
-    protected Object clone() {
-        try {
-            return super.clone();
-        }catch (CloneNotSupportedException e){
-            e.printStackTrace();
-        }
-        return null;
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override

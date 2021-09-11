@@ -12,6 +12,8 @@ public class SingleTest {
         Singleton s1 = Singleton.getInstance();
         Singleton s2 = Singleton.getInstance();
         System.out.println(s1 == s2);
+
+        System.out.println(SingleEnum.STUDENT);
     }
 }
 
@@ -33,5 +35,24 @@ class Singleton{
         }
         return singleton;
     }
+}
+enum SingleEnum{
 
+    STUDENT("学生", 18);
+
+    private final String name;
+    private final Integer age;
+
+    SingleEnum(String name, Integer age){
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "SingleEnum{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

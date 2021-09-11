@@ -11,7 +11,7 @@ import java.util.Vector;
  */
 public class ObserverTest {
     public static void main(String[] args) {
-        ConcreteSubject subject = new ConcreteSubject();
+        Subject subject = new ConcreteSubject();
         ConcreteObserver1 observer1 = new ConcreteObserver1();
         ConcreteObserver2 observer2 = new ConcreteObserver2();
         subject.addObserver(observer1);
@@ -25,9 +25,7 @@ abstract class Subject{
     public void addObserver(Observer o){
         this.observers.add(o);
     }
-    public void delObserver(Observer o){
-        this.observers.remove(o);
-    }
+
     abstract void notifyObserver();
 }
 //具体目标

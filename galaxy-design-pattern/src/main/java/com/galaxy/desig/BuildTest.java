@@ -8,7 +8,7 @@ package com.galaxy.desig;
  */
 public class BuildTest {
     public static void main(String[] args) {
-        Food food = new Food.Builder().setName("大米").bulid();
+        Food food = new Food.Builder().setName("大米").build();
         System.out.println(food);
     }
 }
@@ -34,7 +34,7 @@ class Food{
             return this;
         }
 
-        public Food bulid(){
+        public Food build(){
             return new Food(this);
         }
     }
