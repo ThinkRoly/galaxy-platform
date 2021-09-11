@@ -11,6 +11,7 @@
         <module>galaxy-net</module>
         <module>galaxy-data</module>
         <module>galaxy-design-pattern</module>
+        <module>galaxy-cloud</module>
     </modules>
 
     <packaging>pom</packaging>
